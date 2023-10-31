@@ -1,0 +1,132 @@
+
+<div th:fragment="textboxfragment">
+	<style>
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #fff; /* Change the color of the scrollbar thumb to white */
+	border-radius: 6px; /* Round the edges of the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #ccc; /* Change the color on hover to light gray */
+}
+
+/* Scrollbar for Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #fff transparent;
+	/* Change the color of the scrollbar thumb to white and the track to transparent */
+}
+
+/* Scrollbar for Edge (Chromium-based) */
+*::-webkit-scrollbar {
+	width: 12px;
+}
+
+*::-webkit-scrollbar-thumb {
+	background: #fff; /* Change the color of the scrollbar thumb to white */
+	border-radius: 6px; /* Round the edges of the thumb */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background: #ccc; /* Change the color on hover to light gray */
+}
+/* CSS for the list container */
+.list-container {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 160px;
+	background-color: #000; /* Black background */
+	border: 1px solid #ccc;
+	z-index: 999;
+	max-height: 200px;
+	overflow-y: auto;
+	color: #dee2e6; /* shining White text */
+	font-weight: bold; /* Bold font */
+	border-radius: 10px; /* Rounded corners */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+}
+.list-item:hover{
+    background-color: #ccc;
+    color: black;
+}
+
+/* CSS for list items */
+.list-item {
+	padding: 2px;
+	padding-left:5px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.list-item:hover {
+	background-color: #ccc;
+}
+</style>
+	<div
+		class="container d-flex justify-content-center align-items-center vh-100">
+
+		<div class="textbox bg-light p-4 rounded shadow">
+
+			<label>Enter the location: <input type="text"
+				name="Filelocation" list="filelocation" id="filelocationinput"
+				th:value="${loc}"> <datalist id="filelocation">
+					<option th:value="${loc}">[[${loc}]]</option>
+				</datalist>
+			</label> <label>Select Year: <select name="ParentFolder"
+				id="parentFolder">
+					<option value="@THISYEAR" selected>@THISYEAR</option>
+			</select>
+			</label> <label>Select Month: <select name="ChildFolder"
+				id="childFolder">
+					<option value="@THISMONTH" selected>@THISMONTH</option>
+			</select>
+			</label> <label>Select Day: <input type="text" name="FileName"
+				list="fileName" id="fileNameinput" value="@TODAY"> <datalist
+					id="fileName">
+					<option value="@TODAY">@TODAY</option>
+					<option value="@THISMONTH">@THISMONTH</option>
+					<option value="@THISYEAR">@THISYEAR</option>
+				</datalist>
+			</label>  
+
+			<textarea id="feedtextdata" spellcheck="false" class="form-control" rows="18" cols="70"
+				style="font-size: 16px; font-family: PlaypenSans-Regular; font-weight: normal;"></textarea>
+			<button id="saveButton"  type="button" style="width: 179px;border-radius: 12px; margin-top: 5px; text-align: center;"
+				class="btn btn-dark btn-sm justify-content-end">Save</button>
+
+			<label id="med">Save: <select name="SaveORnot"
+				id="SaveORnotinput">
+					<option value="@YES" selected>@YES</option>
+					<option value="@NO">@NO</option>
+			</select>
+			</label>
+
+
+		</div>
+	</div>
+	<div class="list-container" id="listContainer">
+		<div class="list-item" style="display: none;" id="paste"
+			data-option="pa">Paste</div>
+		<div class="list-item" data-option="sa">Save</div>
+		<div class="list-item" data-option="lp">Load Old File</div>
+		<div class="list-item" data-option="cl">Clear</div>
+		<div class="list-item" data-option="co">Copy</div>
+		<div class="list-item" data-option="o">Small Task</div>
+		<div class="list-item" data-option="os">Big Task</div>
+		<div class="list-item" data-option="d">Date</div>
+		<div class="list-item" data-option="t">Time</div>
+		<div class="list-item" data-option="s">Add{*}</div>
+		<div class="list-item" data-option="n">Add{Number}</div>
+		<div class="list-item" data-option="m">Move Right</div>
+		<div class="list-item" data-option="f">Tommorow</div>
+		<div class="list-item" data-option="br">Bracket</div>
+	</div>
+
+
+</div>

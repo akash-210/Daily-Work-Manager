@@ -1,0 +1,42 @@
+
+<div th:fragment="navfragment">
+	<nav class="navbar navbar-dark bg-dark fixed-top">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Daily Work Manager</a>
+			<button id="Create1" type="button" style="display: none;" class="btn btn-success">hidenfornow-Create</button>
+			<button id="Create" type="button" style="display: none;" class="btn btn-success">hidenfornow-Create</button>
+			<button id="showsaveinfo" class="showsaveinfo"></button>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+				aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1"
+				id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">File
+						System</h5>
+					<button id="backButton" type="button" class="btn btn-light btn-sm">Back</button>
+					<button id="closeButton" type="button"
+						class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+						aria-label="Close"></button>
+				</div>
+				<div
+					class="container d-flex justify-content-center align-items-center vh-100">
+					<div class="textbox contain bg-dark p-4 rounded shadow"
+						id="viewFolder">
+
+						<div th:fragment="load">
+							<button th:text="${foldername}"
+								class="btn btn-primary gap-2 d-grid col-6 mx-auto mb-3"
+								id="chooseFolder" th:each="foldername: ${folder}"></button>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</nav>
+
+</div>

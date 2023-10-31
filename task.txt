@@ -1,0 +1,11 @@
+SAVINGDIRECTORY<->C:\Users\akash.v\Documents\Tasks
+PARENTFOLDERNAME<->@THISYEAR
+SUBFOLDERNAME<->@THISMONTH
+START*
+FILENAME<->@TODAY
+SAVE<->@YES
+TEXT*
+Topic <-> [TASK INFO - learning react] [DAY - 2]*
+
+FLuKY@6NWL2u2Nq=github password,dmnsvkjhb
+STOP*
