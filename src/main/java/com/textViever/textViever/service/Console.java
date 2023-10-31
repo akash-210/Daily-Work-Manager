@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.springframework.stereotype.Service;
@@ -144,11 +145,7 @@ public class Console {
 			String defaultLocation = "C:\\Users\\***\\Documents\\Tasks\\ end";
 			l = defaultLocation.replace("***", currentuser).replace(" end", "");
 		}
-		File file = new File(l);
-		if (!file.isDirectory()) {
-			file.mkdir();
-			System.out.println("The default directory has been created." + file.getAbsolutePath() + "\n");
-		}
+		File file=checkFileLocationStrict(l);
 		currlocationFromConsole=file.getAbsolutePath();
 		return file.getAbsolutePath();
 	}
@@ -165,12 +162,13 @@ public class Console {
 			String[] prenames = { "parentfoldername", "subfoldername" };
 			finalsavinglocation = finalsavinglocation + "\\"
 					+ getComputedName(textSavingDetails.get(prenames[j]), null);
-			File file = new File(finalsavinglocation);
-			if (!file.isDirectory()) {
-				file.mkdir();
-				System.out.println("The default directory has now been created." + file.getAbsolutePath() + "\n");
-			}
+			
 			j++;
+		}
+		File filelocation = new File(finalsavinglocation);
+		if (!filelocation.isDirectory()) {
+			filelocation.mkdirs();
+			System.out.println("The default directory has now been created." + filelocation.getAbsolutePath() + "\n");
 		}
 		// from this file Saving with data starts
 		for (int i = 0; i < arraylist.size(); i++) {
@@ -215,6 +213,27 @@ public class Console {
 		}
 		return lastFilesaveName;
 
+	}
+
+	private static File checkFileLocationStrict(String finalSavingLocation) {
+		 File fileLocation = new File(finalSavingLocation);
+		    Scanner scanner = new Scanner(System.in);
+		    boolean message;
+		    while (true) {
+		        if ((message=fileLocation.exists()) || fileLocation.mkdirs()) {
+		            // directory will exists or has been created
+		            System.out.println("The directory has been "+((message)?"Present":"Created")+" at: " + fileLocation.getAbsolutePath() + "\n");
+		            break; // esits the while loop when a valid location is founded.
+		        } else {
+		        	System.out.println("");
+		            System.out.println("Error: Could not create a new folder at the given location. There might be a permission issue.");
+		            System.err.print("Please enter a new valid location here for the directory: ");
+		            String newDirectory = scanner.nextLine();
+		            fileLocation = new File(newDirectory);
+		        }
+		    }
+		    scanner.close();
+		    return fileLocation;
 	}
 
 	private static String getComputedName(String filename, List<String> list) {

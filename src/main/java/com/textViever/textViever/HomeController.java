@@ -31,7 +31,7 @@ public class HomeController {
 	@Autowired
 	private Console console;
 
-	@RequestMapping(value = "home")
+	@RequestMapping(value = {"home","/"," "})
 	public String homepage(Model model) throws IOException {
 		File file = new File("task.txt");
 		FileReader reader = new FileReader(file);
@@ -44,7 +44,7 @@ public class HomeController {
 			}
 			switch (splitvalue[0].trim().toUpperCase()) {
 			case "SAVINGDIRECTORY":
-				if(splitvalue.length > 1) {
+				if(splitvalue.length > 1 && splitvalue[1].trim().equalsIgnoreCase(console.currlocationFromConsole.trim())) {
 					loc =splitvalue[1];
 				}
 				else {
